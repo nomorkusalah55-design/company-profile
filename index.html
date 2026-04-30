@@ -1,0 +1,714 @@
+Berikut adalah kode lengkap untuk website company profile "Rang" dengan desain modern dan efek berkilauan.
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Rang | Company Profile - Inovasi Tanpa Batas</title>
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Poppins + Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0c10;
+            color: #f0f3fa;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Efek glitter / kilauan latar belakang */
+        .glitter-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(255,215,0,0.03) 0%, rgba(0,0,0,0) 70%);
+        }
+
+        .glitter-bg::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background-image: radial-gradient(circle at 30% 40%, rgba(255, 220, 100, 0.08) 1.5px, transparent 1.5px);
+            background-size: 40px 40px;
+            animation: shimmerMove 28s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shimmerMove {
+            0% { transform: translate(0,0) rotate(0deg);}
+            100% { transform: translate(40px, 40px) rotate(3deg);}
+        }
+
+        /* Glassmorphism + efek border glow */
+        .glass-card {
+            background: rgba(15, 20, 30, 0.65);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            border: 1px solid rgba(255, 220, 150, 0.3);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,215,0,0.1) inset;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 40px rgba(0,0,0,0.4), 0 0 20px rgba(255, 200, 50, 0.4);
+            border-color: rgba(255, 200, 70, 0.7);
+        }
+
+        /* shiny button */
+        .btn-shine {
+            background: linear-gradient(135deg, #f5b042 0%, #ffd966 100%);
+            border: none;
+            padding: 12px 28px;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 40px;
+            color: #0e1015;
+            cursor: pointer;
+            transition: all 0.25s;
+            box-shadow: 0 4px 14px rgba(255, 200, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-shine::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,200,0.6), transparent);
+            transition: left 0.5s;
+            z-index: -1;
+        }
+
+        .btn-shine:hover::before {
+            left: 100%;
+        }
+
+        .btn-shine:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(255, 200, 50, 0.5);
+            background: linear-gradient(135deg, #ffc857, #ffe08c);
+        }
+
+        /* navbar */
+        nav {
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            width: 90%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0.7rem 2rem;
+            background: rgba(5, 10, 20, 0.75);
+            backdrop-filter: blur(16px);
+            border-radius: 70px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFE6B0, #FFB347);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            font-size: 2rem;
+            color: #ffc857;
+            text-shadow: 0 0 6px rgba(255,200,0,0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #eef2ff;
+            font-weight: 500;
+            transition: 0.2s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #ffd966;
+            text-shadow: 0 0 4px #ffbf40;
+        }
+
+        /* section umum */
+        section {
+            position: relative;
+            z-index: 2;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 80px 28px;
+        }
+
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            padding-top: 40px;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-badge {
+            background: rgba(255, 200, 70, 0.2);
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            border-left: 3px solid #ffc857;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(4px);
+        }
+
+        h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            background: linear-gradient(to right, #fff5e0, #ffde9c, #ffbc5e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight {
+            color: #ffdd88;
+            text-shadow: 0 0 8px rgba(255,200,0,0.5);
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(8px);
+            border-radius: 2rem;
+            padding: 1rem 2rem;
+            min-width: 130px;
+            text-align: center;
+            border: 1px solid rgba(255,215,0,0.25);
+        }
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #ffdd88;
+        }
+
+        /* services cards */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            letter-spacing: -0.5px;
+        }
+        .section-title span {
+            background: linear-gradient(120deg, #ffe0a3, #ffb84d);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .service-card {
+            text-align: center;
+            padding: 2rem 1.5rem;
+        }
+        .service-icon {
+            font-size: 3.2rem;
+            color: #ffca5e;
+            margin-bottom: 1rem;
+        }
+        .service-card h3 {
+            font-size: 1.7rem;
+            margin: 0.8rem 0;
+        }
+
+        /* Team members */
+        .team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+        .team-member {
+            background: rgba(20, 25, 38, 0.7);
+            backdrop-filter: blur(8px);
+            padding: 1.8rem;
+            border-radius: 2rem;
+            text-align: center;
+            width: 240px;
+            transition: all 0.2s;
+            border: 1px solid rgba(255,200,70,0.3);
+        }
+        .avatar {
+            width: 110px;
+            height: 110px;
+            background: linear-gradient(145deg, #ffd27a, #b97f10);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 3.2rem;
+            font-weight: bold;
+            color: #1e1b13;
+            box-shadow: 0 0 0 3px rgba(255,220,100,0.5);
+        }
+
+        /* contact */
+        .contact-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            background: rgba(0, 0, 0, 0.35);
+            border-radius: 2.5rem;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,215,0,0.2);
+        }
+        .contact-info {
+            flex: 1;
+        }
+        .contact-form {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .contact-form input, .contact-form textarea {
+            background: rgba(25, 30, 45, 0.8);
+            border: 1px solid #ffcf6e50;
+            padding: 14px 18px;
+            border-radius: 40px;
+            font-size: 1rem;
+            color: white;
+            outline: none;
+            transition: 0.2s;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: #ffcd6e;
+            box-shadow: 0 0 12px rgba(255,205,80,0.3);
+        }
+        .contact-form button {
+            align-self: flex-start;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(255,215,0,0.2);
+            background: #03060b;
+            font-size: 0.9rem;
+            z-index: 2;
+            position: relative;
+        }
+
+        /* glow text & animation */
+        .glow-text {
+            animation: fadeGlow 2s infinite alternate;
+        }
+        @keyframes fadeGlow {
+            0% { text-shadow: 0 0 1px #ffcd6e; opacity: 0.9;}
+            100% { text-shadow: 0 0 12px #ffbc40; opacity: 1;}
+        }
+
+        @media (max-width: 780px) {
+            h1 { font-size: 2.4rem; }
+            .nav-links { gap: 1rem; font-size: 0.9rem;}
+            nav { padding: 0.8rem 1.2rem; }
+            section { padding: 50px 20px; }
+        }
+
+        /* floating glitter effect on card */
+        .sparkle {
+            position: relative;
+            overflow: hidden;
+        }
+        .sparkle::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 1px, transparent 1px);
+            background-size: 35px 35px;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+<div class="glitter-bg"></div>
+
+<!-- Navbar -->
+<nav>
+    <div class="nav-container">
+        <div class="logo">RANG <span>✦</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Beranda</a></li>
+            <li><a href="#services">Layanan</a></li>
+            <li><a href="#team">Tim</a></li>
+            <li><a href="#contact">Kontak</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="hero-content">
+        <div class="hero-badge"><i class="fas fa-gem"></i> Next-Gen Digital Excellence</div>
+        <h1>Menciptakan <span class="highlight">Solusi Brilian</span><br>Untuk Masa Depan Anda</h1>
+        <p style="font-size: 1.2rem; max-width: 550px; margin-bottom: 1.8rem; opacity: 0.9;">Rang hadir sebagai mitra transformasi digital — inovasi berkilau, performa tinggi, dan hasil gemilang.</p>
+        <button class="btn-shine" id="exploreBtn">Jelajahi Layanan <i class="fas fa-arrow-right"></i></button>
+        <div class="stats-grid">
+            <div class="stat-item"><div class="stat-number">150+</div><div>Proyek Selesai</div></div>
+            <div class="stat-item"><div class="stat-number">98%</div><div>Kepuasan Klien</div></div>
+            <div class="stat-item"><div class="stat-number">24/7</div><div>Dukungan Ahli</div></div>
+        </div>
+    </div>
+    <div style="flex: 0.6; text-align: center;">
+        <i class="fas fa-chart-line" style="font-size: 10rem; opacity: 0.3; color: #ffd966; filter: drop-shadow(0 0 12px gold);"></i>
+    </div>
+</section>
+
+<!-- Services -->
+<section id="services">
+    <div class="section-title">✨ <span>Layanan Premium</span> ✨</div>
+    <div class="cards-grid">
+        <div class="glass-card service-card sparkle">
+            <div class="service-icon"><i class="fas fa-code"></i></div>
+            <h3>Web Development</h3>
+            <p>Website modern, responsif, & berkilau dengan performa tinggi serta animasi memukau.</p>
+        </div>
+        <div class="glass-card service-card sparkle">
+            <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+            <h3>Aplikasi Mobile</h3>
+            <p>Solusi cross-platform native, user experience premium dengan sentuhan inovatif.</p>
+        </div>
+        <div class="glass-card service-card sparkle">
+            <div class="service-icon"><i class="fas fa-brain"></i></div>
+            <h3>AI & Otomasi</h3>
+            <p>Integrasi kecerdasan buatan dan sistem pintar untuk efisiensi maksimal.</p>
+        </div>
+        <div class="glass-card service-card sparkle">
+            <div class="service-icon"><i class="fas fa-chart-simple"></i></div>
+            <h3>Digital Marketing</h3>
+            <p>Strategi pemasaran digital yang mengkilap & hasil terukur untuk brand Anda.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section id="team">
+    <div class="section-title">🌟 <span>Pemimpin Kreatif</span> 🌟</div>
+    <div class="team-grid">
+        <div class="team-member">
+            <div class="avatar"><i class="fas fa-user-tie"></i></div>
+            <h3>Rangga Aditya</h3>
+            <p>CEO & Founder</p>
+            <small style="opacity:0.7">Visioner strategi kilau</small>
+        </div>
+        <div class="team-member">
+            <div class="avatar"><i class="fas fa-laptop-code"></i></div>
+            <h3>Shinta Maharani</h3>
+            <p>Lead Developer</p>
+            <small style="opacity:0.7">arsitektur gemilang</small>
+        </div>
+        <div class="team-member">
+            <div class="avatar"><i class="fas fa-palette"></i></div>
+            <h3>Dimas Pradana</h3>
+            <p>Creative Director</p>
+            <small style="opacity:0.7">desain berkilau & UI/UX</small>
+        </div>
+        <div class="team-member">
+            <div class="avatar"><i class="fas fa-chart-line"></i></div>
+            <h3>Maya Sari</h3>
+            <p>Head of Marketing</p>
+            <small style="opacity:0.7">pertumbuhan cemerlang</small>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+    <div class="section-title">📞 <span>Hubungi Kami</span> 🔥</div>
+    <div class="contact-wrapper">
+        <div class="contact-info">
+            <h3 style="font-size: 1.8rem; margin-bottom: 1rem;"><i class="fas fa-map-marker-alt" style="color:#ffc857;"></i> Rang Official</h3>
+            <p><i class="fas fa-globe"></i> domainsaya.com</p>
+            <p><i class="fas fa-envelope"></i> hello@rang.co.id</p>
+            <p><i class="fas fa-phone-alt"></i> +62 812 3456 7890</p>
+            <div style="margin-top: 2rem; display: flex; gap: 20px;">
+                <i class="fab fa-instagram fa-2x" style="cursor:pointer; transition:0.2s; color:#ffcc66;"></i>
+                <i class="fab fa-linkedin fa-2x" style="cursor:pointer; transition:0.2s; color:#ffcc66;"></i>
+                <i class="fab fa-github fa-2x" style="cursor:pointer; transition:0.2s; color:#ffcc66;"></i>
+            </div>
+        </div>
+        <div class="contact-form">
+            <input type="text" id="nameInput" placeholder="Nama lengkap">
+            <input type="email" id="emailInput" placeholder="Email aktif">
+            <textarea rows="3" id="msgInput" placeholder="Pesan anda..."></textarea>
+            <button class="btn-shine" id="sendMsgBtn">Kirim Pesan <i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2025 Rang — domainsaya.com | Menyinari Inovasi Digital ✦</p>
+</footer>
+
+<!-- JavaScript untuk efek interaktif & glitter notifikasi -->
+<script>
+    (function() {
+        // Smooth scrolling untuk semua link internal
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Tombol explore -> scroll ke services
+        const exploreBtn = document.getElementById('exploreBtn');
+        if(exploreBtn) {
+            exploreBtn.addEventListener('click', () => {
+                document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+
+        // Simulasi pengiriman pesan dengan efek kilauan & alert
+        const sendBtn = document.getElementById('sendMsgBtn');
+        const nameInp = document.getElementById('nameInput');
+        const emailInp = document.getElementById('emailInput');
+        const msgInp = document.getElementById('msgInput');
+
+        function showGlowNotification(message, isError = false) {
+            // membuat notifikasi custom dengan efek
+            const notif = document.createElement('div');
+            notif.innerText = message;
+            notif.style.position = 'fixed';
+            notif.style.bottom = '30px';
+            notif.style.right = '30px';
+            notif.style.backgroundColor = isError ? 'rgba(200, 60, 50, 0.9)' : 'rgba(30, 40, 55, 0.9)';
+            notif.style.backdropFilter = 'blur(12px)';
+            notif.style.borderLeft = `5px solid ${isError ? '#ff6b6b' : '#ffcd6e'}`;
+            notif.style.color = 'white';
+            notif.style.padding = '14px 24px';
+            notif.style.borderRadius = '50px';
+            notif.style.fontWeight = '500';
+            notif.style.zIndex = '9999';
+            notif.style.boxShadow = '0 0 15px rgba(255,210,90,0.5)';
+            notif.style.fontFamily = 'Inter';
+            document.body.appendChild(notif);
+            setTimeout(() => {
+                notif.style.opacity = '0';
+                notif.style.transition = '0.4s';
+                setTimeout(() => notif.remove(), 500);
+            }, 2800);
+        }
+
+        sendBtn.addEventListener('click', () => {
+            const name = nameInp.value.trim();
+            const email = emailInp.value.trim();
+            const message = msgInp.value.trim();
+            if(!name || !email || !message) {
+                showGlowNotification('✨ Isi semua field untuk berkilau ✨', true);
+                // Efek getar kecil
+                const inputs = [nameInp, emailInp, msgInp];
+                inputs.forEach(inp => {
+                    if(inp.value.trim() === "") {
+                        inp.style.borderColor = '#ff8866';
+                        inp.style.boxShadow = '0 0 6px #ff6644';
+                        setTimeout(() => {
+                            inp.style.borderColor = '#ffcf6e50';
+                            inp.style.boxShadow = 'none';
+                        }, 1000);
+                    }
+                });
+                return;
+            }
+            if(!email.includes('@') || !email.includes('.')) {
+                showGlowNotification('📧 Email tidak valid! kilauan gagal ✨', true);
+                return;
+            }
+            // simulasi sukses
+            showGlowNotification(`✨ Terima kasih ${name}! Pesan Anda berkilau dan terkirim ✨`);
+            nameInp.value = '';
+            emailInp.value = '';
+            msgInp.value = '';
+            // ekstra sparkle
+            createSparkleEffect(sendBtn);
+        });
+
+        function createSparkleEffect(element) {
+            if(!element) return;
+            const rect = element.getBoundingClientRect();
+            for(let i=0;i<8;i++) {
+                const spark = document.createElement('div');
+                spark.innerHTML = '✦';
+                spark.style.position = 'fixed';
+                spark.style.left = rect.left + Math.random() * rect.width + 'px';
+                spark.style.top = rect.top + Math.random() * rect.height + 'px';
+                spark.style.fontSize = (10 + Math.random() * 14) + 'px';
+                spark.style.color = `hsl(${45 + Math.random() * 20}, 100%, 65%)`;
+                spark.style.pointerEvents = 'none';
+                spark.style.zIndex = '10000';
+                spark.style.opacity = '1';
+                spark.style.transition = 'all 0.8s ease-out';
+                document.body.appendChild(spark);
+                setTimeout(() => {
+                    spark.style.transform = `translate(${ (Math.random() - 0.5) * 70 }px, -${40 + Math.random() * 70}px)`;
+                    spark.style.opacity = '0';
+                }, 10);
+                setTimeout(() => spark.remove(), 900);
+            }
+        }
+
+        // menambahkan efek kilauan saat hover pada semua kartu
+        const cards = document.querySelectorAll('.glass-card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', (e) => {
+                // efek ripple berkilau
+                const ripple = document.createElement('span');
+                ripple.className = 'ripple-glow';
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.backgroundColor = 'rgba(255, 210, 90, 0.3)';
+                ripple.style.width = '20px';
+                ripple.style.height = '20px';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.transition = 'transform 0.5s ease-out';
+                ripple.style.pointerEvents = 'none';
+                const rectCard = card.getBoundingClientRect();
+                const x = e.clientX - rectCard.left;
+                const y = e.clientY - rectCard.top;
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.style.position = 'absolute';
+                card.style.overflow = 'hidden';
+                card.appendChild(ripple);
+                requestAnimationFrame(() => {
+                    ripple.style.transform = 'scale(20)';
+                    ripple.style.opacity = '0';
+                });
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Tambahan glitter dinamis pada angka/title
+        const statNumbers = document.querySelectorAll('.stat-number');
+        function animateNumbers() {
+            statNumbers.forEach(el => {
+                let finalNum = parseInt(el.innerText);
+                if(isNaN(finalNum)) finalNum = 100;
+                let current = 0;
+                const step = Math.ceil(finalNum / 45);
+                const interval = setInterval(() => {
+                    current += step;
+                    if(current >= finalNum) {
+                        el.innerText = finalNum + (el.innerText.includes('+') ? '+' : '');
+                        clearInterval(interval);
+                    } else {
+                        el.innerText = current + (el.innerText.includes('+') ? '+' : '');
+                    }
+                }, 20);
+            });
+        }
+        // jalankan angka saat Hero terlihat
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    animateNumbers();
+                    observer.disconnect();
+                }
+            });
+        }, { threshold: 0.2 });
+        const statsGrid = document.querySelector('.stats-grid');
+        if(statsGrid) observer.observe(statsGrid);
+
+        // Mini easter egg kilauan di footer
+        const footer = document.querySelector('footer');
+        if(footer) {
+            footer.addEventListener('click', () => {
+                for(let i=0;i<20;i++) {
+                    let star = document.createElement('div');
+                    star.innerHTML = '✨';
+                    star.style.position = 'fixed';
+                    star.style.left = Math.random() * window.innerWidth + 'px';
+                    star.style.top = Math.random() * window.innerHeight + 'px';
+                    star.style.fontSize = '1.3rem';
+                    star.style.opacity = '0.9';
+                    star.style.pointerEvents = 'none';
+                    star.style.zIndex = '9999';
+                    star.style.transition = 'all 0.5s ease';
+                    document.body.appendChild(star);
+                    setTimeout(() => {
+                        star.style.opacity = '0';
+                        star.style.transform = 'scale(1.5)';
+                    }, 30);
+                    setTimeout(() => star.remove(), 800);
+                }
+            });
+        }
+    })();
+</script>
+</body>
+</html>
+```
